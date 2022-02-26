@@ -2,8 +2,8 @@ name: Build Android
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - v*
 
 jobs:
   process:
@@ -29,11 +29,10 @@ jobs:
           STORE_FILE: ${{ secrets.STORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD}}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD}}
-      - run: flutter build appbundle
       - run: ls -l build/app/outputs/apk/release/
       # 发布到 Release
-#      - name: Release apk
-#        uses: ncipollo/release-action@v1.9.0
-#        with:
-#          artifacts: "build/app/outputs/apk/release/android.apk"
-#          token: ${{ secrets.TOKEN }}
+      - name: Release apk
+        uses: ncipollo/release-action@v1.9.0
+        with:
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          token: ${{ secrets.TOKEN }}
