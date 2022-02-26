@@ -2,8 +2,8 @@ name: Build Android
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - v*
 
 jobs:
   process:
@@ -22,12 +22,13 @@ jobs:
       - run: echo $KEYSTORE | base64 -di > android/app/keystore.jks
         env:
           KEYSTORE: ${{ secrets.KEYSTORE }}
+      - run: flutter test
+      - run: flutter build apk --release
+        env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           STORE_FILE: ${{ secrets.STORE_FILE }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD}}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD}}
-      - run: flutter test
-      - run: flutter build apk --release
       - run: flutter build appbundle
       # 发布到 Release
       - name: Release apk
