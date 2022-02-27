@@ -3,7 +3,7 @@ name: Build Mac
 on:
   push:
     branches:
-      - master
+      - closed
 
 jobs:
   process:
