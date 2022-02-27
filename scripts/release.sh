@@ -8,7 +8,7 @@ echo $GITHUB_REF
 echo $BUYU_TAG
 echo $BUYU_VERSION
 
-#flutter pub get
-#echo $KEYSTORE | base64 -di > android/app/keystore.jks
-#flutter test
-#flutter build apk --release  --target-platform android-arm
+flutter pub get
+echo $KEYSTORE | base64 -di > android/app/keystore.jks
+flutter test
+flutter build apk --release  --target-platform android-arm
