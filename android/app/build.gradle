@@ -12,14 +12,12 @@ if (flutterRoot == null) {
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = System.getenv("BUYU_TAG") ?: '1'
-}
-
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = System.getenv("BUYU_VERSION") ?: '1.0'
-}
+def flutterApplicationId = localProperties.getProperty('flutter.applicationId')
+def signingKeyAlias = localProperties.getProperty('signing.keyAlias')
+def signingStoreFile = localProperties.getProperty('signing.storeFile')
+def signingStorePassword = localProperties.getProperty('signing.storePassword')
+def signingKeyPassword = localProperties.getProperty('signing.keyPassword')
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -34,7 +32,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.lhlyu.buyu"
+        applicationId flutterApplicationId
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -43,10 +41,10 @@ android {
 
     signingConfigs {
        release {
-           keyAlias System.getenv("KEY_ALIAS")
-           storeFile file(System.getenv("STORE_FILE"))
-           storePassword System.getenv("KEYSTORE_PASSWORD")
-           keyPassword System.getenv("KEY_PASSWORD")
+           keyAlias signingKeyAlias
+           storeFile file(signingStoreFile)
+           storePassword signingStorePassword
+           keyPassword signingKeyPassword
        }
     }
 
