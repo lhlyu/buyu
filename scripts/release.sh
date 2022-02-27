@@ -4,9 +4,11 @@
 BUYU_TAG=$(echo $GITHUB_TAG | grep -Eo "v\d+.\d+.\d+.*")
 BUYU_VERSION=$(echo $BUYU_TAG | grep -Eo "\d+.\d+.\d+")
 
-echo $GITHUB_TAG
-echo $BUYU_TAG
-echo $BUYU_VERSION
+echo 1:$GITHUB_TAG
+echo 2:$BUYU_TAG
+echo 3:$BUYU_VERSION
+echo 4:$GITHUB_TAG | cut -b 2,5
+echo 5:$GITHUB_TAG | sed 's/[0-9]//g'
 
 #flutter pub get
 #echo $KEYSTORE | base64 -di > android/app/keystore.jks
