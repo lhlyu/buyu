@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 根据tag获取版本号
-BUYU_TAG=$GITHUB_REF
+BUYU_TAG=$(git describe --abbrev=0 --tags)
 BUYU_VERSION=$(echo $BUYU_TAG | grep -Eo "\d+.\d+.\d+")
 
 echo $BUYU_TAG, $BUYU_VERSION
