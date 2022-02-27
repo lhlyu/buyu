@@ -8,6 +8,9 @@ echo $GITHUB_TAG
 echo $BUYU_TAG
 echo $BUYU_VERSION
 
+export BUYU_TAG=$BUYU_TAG
+export BUYU_VERSION=$BUYU_VERSION
+
 flutter pub get
 echo $KEYSTORE | base64 -di > android/app/keystore.jks
 flutter test
