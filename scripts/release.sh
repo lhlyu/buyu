@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # 根据tag获取版本号
 BUYU_TAG=$(git describe --abbrev=0 --tags)
