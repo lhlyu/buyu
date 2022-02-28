@@ -2,8 +2,8 @@ name: Build Android
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - master
 
 jobs:
   process:
@@ -18,12 +18,14 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "2.10.2"
+      - run: pwd
+      - run: ls -l
       - run: flutter pub get
       - run: flutter test
       - run: flutter build apk --release  --target-platform android-arm
-      - name: Release apk
-        uses: ncipollo/release-action@v1.9.0
-        with:
-          artifacts: "build/app/outputs/apk/release/app-release.apk"
-          token: ${{ secrets.TOKEN }}
-#          prerelease: true
+#      - name: Release apk
+#        uses: ncipollo/release-action@v1.9.0
+#        with:
+#          artifacts: "build/app/outputs/apk/release/app-release.apk"
+#          token: ${{ secrets.TOKEN }}
+##          prerelease: true
