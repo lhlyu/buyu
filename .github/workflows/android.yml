@@ -19,7 +19,6 @@ jobs:
         with:
           flutter-version: "2.10.2"
       - run: flutter pub get
-      - run: flutter test
       - run: flutter build apk --release  --target-platform android-arm
       - name: Release apk
         uses: ncipollo/release-action@v1.9.0
