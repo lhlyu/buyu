@@ -1,4 +1,4 @@
-package com.example.buyu
+package com.lhlyu.buyu
 
 import io.flutter.embedding.android.FlutterActivity
 
