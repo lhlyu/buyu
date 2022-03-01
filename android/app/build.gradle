@@ -20,6 +20,9 @@ def signingStorePassword = localProperties.getProperty('signing.storePassword')
 def signingKeyPassword = localProperties.getProperty('signing.keyPassword')
 
 println '------------------>'
+println flutterVersionCode
+println flutterVersionName
+println flutterApplicationId
 println signingKeyAlias
 println signingStoreFile
 println signingStorePassword
