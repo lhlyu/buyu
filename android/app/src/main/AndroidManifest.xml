@@ -2,7 +2,7 @@
     package="com.example.buyu">
    <application
         android:label="buyu"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/buyu">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

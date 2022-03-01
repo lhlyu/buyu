@@ -23,18 +23,6 @@ def signingStoreFile = properties['storeFile']
 def signingStorePassword = properties['storePassword']
 def signingKeyPassword = properties['keyPassword']
 
-
-println '------------------>'
-println flutterRoot
-println flutterVersionCode
-println flutterVersionName
-println flutterApplicationId
-println signingKeyAlias
-println signingStoreFile
-println signingStorePassword
-println signingKeyPassword
-println '------------------>'
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
