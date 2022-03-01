@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'BuYu',
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.deepOrange,
       ),
-      home: MyHomePage(title: 'BuYu Test'),
+      home: MyHomePage(title: 'BuYu'),
     );
   }
 }
@@ -53,23 +53,21 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '点击按钮增加数字:',
+              '点击按钮增减数字:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            TextButton(onPressed: () => setState(() {
+            ElevatedButton(onPressed: () => setState(() {
               _counter--;
-            }), child: Text('减一'))
+            }), child: Text('减一')),
+            ElevatedButton(onPressed: () => setState(() {
+              _counter++;
+            }), child: Text('加一'))
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: '增加',
-        child: Icon(Icons.add),
-      ),
+      )
 
     );
   }
