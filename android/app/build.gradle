@@ -11,15 +11,21 @@ if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-def flutterApplicationId = localProperties.getProperty('flutter.applicationId')
-def signingKeyAlias = localProperties.getProperty('signing.keyAlias')
-def signingStoreFile = localProperties.getProperty('signing.storeFile')
-def signingStorePassword = localProperties.getProperty('signing.storePassword')
-def signingKeyPassword = localProperties.getProperty('signing.keyPassword')
+def propertiesFile = rootProject.file("gradle.properties")
+def properties = new Properties()
+properties.load(new FileInputStream(propertiesFile))
+
+def flutterVersionCode = properties['versionCode']
+def flutterVersionName = properties['versionName']
+def flutterApplicationId = properties['applicationId']
+def signingKeyAlias = properties['keyAlias']
+def signingStoreFile = properties['storeFile']
+def signingStorePassword = properties['storePassword']
+def signingKeyPassword = properties['keyPassword']
+
 
 println '------------------>'
+println flutterRoot
 println flutterVersionCode
 println flutterVersionName
 println flutterApplicationId
