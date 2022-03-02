@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 void main() {
   runApp(MyApp());
   if (Platform.isAndroid) {
-    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light)
+    );
   }
 }
 
@@ -15,11 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BuYu',
+      title: '不语',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
-      home: MyHomePage(title: 'BuYu'),
+      home: MyHomePage(title: '不语'),
     );
   }
 }
@@ -62,13 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => setState(() {
-      //     _counter++;
-      //   }),
-      //   tooltip: '增加',
-      //   child: Icon(Icons.add),
-      // ),
     );
   }
 }
