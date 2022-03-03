@@ -2,6 +2,11 @@
 研究github打包flutter
 
 
+## 工具
+
+- [在线资源生成](https://icon.wuruihong.com/)
+
+
 ## 参考
 
 - [构建安卓](https://xie.infoq.cn/article/7b10cb8ef48310eda845bbfcd)

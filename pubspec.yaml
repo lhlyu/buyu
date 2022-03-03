@@ -23,7 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # 管理状态、路由
   get: ^4.6.1
+  # 管理网络请求
   dio: ^4.0.4
 
   # The following adds the Cupertino Icons font to your application.

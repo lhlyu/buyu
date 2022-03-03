@@ -12,5 +12,8 @@ void main() {
     ),
     initialRoute: ROUTE_DASHBOARD.path,
     getPages: GetPages,
+    onInit: () => {
+
+    },
   ));
 }
