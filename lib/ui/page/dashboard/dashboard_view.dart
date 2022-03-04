@@ -1,3 +1,5 @@
+import 'package:buyu/http/api.dart';
+import 'package:buyu/utils/file.dart';
 import 'package:buyu/routes/routes.dart';
 import 'package:buyu/ui/page/home/home_view.dart';
 import 'package:buyu/ui/page/inspiration/inspiration_view.dart';
@@ -17,6 +19,9 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
+      initState: (state) => {
+        Upgrade()
+      },
       builder: (controller) {
         return Scaffold(
           body: pages[controller.tabIndex],
@@ -33,4 +38,21 @@ class DashboardView extends StatelessWidget {
       },
     );
   }
+}
+
+
+// 检查是否需要升级
+// 下载新版本
+// 安装
+void Upgrade() async {
+  final tagName = await readFile('assets/version.txt');
+  final data = await ApiGetNewTagName();
+  Get.defaultDialog(
+      title: "提示框",
+      middleText: "${data.toString()}, $tagName",
+      backgroundColor: Colors.pink,
+      titleStyle: TextStyle(color: Colors.black),
+      middleTextStyle: TextStyle(color: Colors.black),
+      radius: 30
+  );
 }

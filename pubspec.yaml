@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # app信息
+  package_info: ^2.0.2
   # 管理状态、路由
   get: ^4.6.1
   # 管理网络请求
@@ -48,6 +50,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+assets:
+ - assets/version.txt
 
   # To add assets to your application, add an assets section, like this:
   # assets:

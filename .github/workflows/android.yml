@@ -11,19 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo '${{ toJSON(github) }}'
-#      - uses: actions/setup-java@v2
-#        with:
-#          distribution: 'zulu'
-#          java-version: '11'
-#      - uses: subosito/flutter-action@v2
-#        with:
-#          flutter-version: "2.10.2"
-#      - run: flutter pub get
-#      - run: flutter build apk --release  --target-platform android-arm
-#      - name: Release apk
-#        uses: ncipollo/release-action@v1.9.0
-#        with:
-#          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
-#          token: ${{ secrets.TOKEN }}
-#          prerelease: false
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "2.10.2"
+      - run: echo '${{ github.ref_name }}' > assets/version.txt
+      - run: flutter pub get
+      - run: flutter build apk --release  --target-platform android-arm
+      - name: Release apk
+        uses: ncipollo/release-action@v1.9.0
+        with:
+          artifacts: "build/app/outputs/flutter-apk/app-release.apk"
+          token: ${{ secrets.TOKEN }}
+          prerelease: false
