@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:buyu/http/response_data.dart';
 import 'package:buyu/utils/file.dart';
 import 'package:dio/dio.dart';
@@ -24,9 +26,11 @@ class HttpManager {
     _dio?.interceptors.add(InterceptorsWrapper(
         onRequest:(RequestOptions options, RequestInterceptorHandler handler) async {
           _dio?.lock();
-          PackageInfo packageInfo = await PackageInfo.fromPlatform();
-          String tagName = await readFile('assets/version.txt');
-          String version = packageInfo.version;
+          String version = '';
+          // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+          // version = packageInfo.version;
+          String tagName = await readFile('version.txt');
+
 
           options.headers["Content-Type"] = 'application/json;charset=UTF-8';
           options.headers["version"] = version;
@@ -51,13 +55,13 @@ class HttpManager {
         method: method,
         headers: headers,
       );
-      Response response = await _dioInstance.request(url, data: data, queryParameters: querys);
+      Response response = await _dioInstance.request(url, data: data, queryParameters: querys, options: options);
       if (response.data != null) {
         return Future.value(ResponseData(response.data['code'], response.data['msg'], response.data['data']));
       }
-      return Future.value(ResponseData(2, '数据为空', null));
+      return Future.value(ResponseData(-2, '数据为空', null));
     } catch (e) {
-      return Future.value(ResponseData(1, '请求异常', null));
+      return Future.value(ResponseData(-1, '请求异常', null));
     }
   }
 

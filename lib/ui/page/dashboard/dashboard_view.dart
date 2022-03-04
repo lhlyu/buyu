@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:buyu/http/api.dart';
 import 'package:buyu/utils/file.dart';
 import 'package:buyu/routes/routes.dart';
@@ -45,14 +47,14 @@ class DashboardView extends StatelessWidget {
 // 下载新版本
 // 安装
 void Upgrade() async {
-  final tagName = await readFile('assets/version.txt');
+  final tagName = await readFile('version.txt');
   final data = await ApiGetNewTagName();
   Get.defaultDialog(
       title: "提示框",
-      middleText: "${data.toString()}, $tagName",
-      backgroundColor: Colors.pink,
+      middleText: "${jsonEncode(data)}, $tagName",
+      backgroundColor: Colors.white,
       titleStyle: TextStyle(color: Colors.black),
       middleTextStyle: TextStyle(color: Colors.black),
-      radius: 30
+      radius: 15
   );
 }
