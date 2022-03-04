@@ -30,7 +30,7 @@ final _RouteModel ROUTE_INSPIRATION = _RouteModel(2,'/inspiration','灵感', Ico
 
 final List<GetPage> GetPages = [
   GetPage(name: ROUTE_DASHBOARD.path, page: () => DashboardView(), binding: DashboardBinding()),
-  GetPage(name: ROUTE_HOME.path, page: () => HomeView(), binding: HomeBinding()),
-  GetPage(name: ROUTE_SETTING.path, page: () => SettingView(), binding: SettingBinding()),
-  GetPage(name: ROUTE_INSPIRATION.path, page: () => InspirationView(), binding: InspirationBinding()),
+  // GetPage(name: ROUTE_HOME.path, page: () => HomeView(), binding: HomeBinding()),
+  // GetPage(name: ROUTE_SETTING.path, page: () => SettingView(), binding: SettingBinding()),
+  // GetPage(name: ROUTE_INSPIRATION.path, page: () => InspirationView(), binding: InspirationBinding()),
 ];

@@ -23,9 +23,6 @@ class DashboardView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             onTap: controller.changeTabIndex,
             currentIndex: controller.tabIndex,
-            type: BottomNavigationBarType.fixed,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
             items: [
               BottomNavigationBarItem(label: ROUTE_HOME.label, icon: ROUTE_HOME.icon),
               BottomNavigationBarItem(label: ROUTE_INSPIRATION.label, icon: ROUTE_INSPIRATION.icon),
