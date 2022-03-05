@@ -1,11 +1,5 @@
 
-import 'package:buyu/http/api.dart';
+import 'package:buyu/http/upgrade_provider.dart';
 
 void main() {
- _testGetNewVersion();
-}
-
-void _testGetNewVersion() async {
-  final data = await ApiGetNewTagName();
-  print(data.data['version']);
 }

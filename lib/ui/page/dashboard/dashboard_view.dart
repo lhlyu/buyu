@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:buyu/http/api.dart';
+import 'package:buyu/http/upgrade_provider.dart';
 import 'package:buyu/utils/file.dart';
 import 'package:buyu/routes/routes.dart';
 import 'package:buyu/ui/page/home/home_view.dart';
@@ -17,7 +17,7 @@ final pages = [
   SettingView()
 ];
 
-class DashboardView extends StatelessWidget {
+class DashboardView extends GetView<DashboardController> {
 
   var _pageController = PageController(
     /// 初始索引值
@@ -68,22 +68,22 @@ class DashboardView extends StatelessWidget {
 // 下载新版本
 // 安装
 void Upgrade() async {
+  final provider = Get.find<UpgradeProvider>();
   final tagName = await readFile('assets/version.txt');
-  final data = await ApiGetNewTagName();
+  final data = await provider.ApiGetNewTagName();
   if (data.code != 0) {
     return;
   }
-  if (data.data['version'].toString() == tagName) {
+  if (data.data?.version.toString() == tagName) {
     return;
   }
   Get.defaultDialog(
       title: "提示框",
-      middleText: "${jsonEncode(data.data)}, $tagName",
       backgroundColor: Colors.white,
       titleStyle: TextStyle(color: Colors.black),
       middleTextStyle: TextStyle(color: Colors.black),
       radius: 15,
-      content: Text("${jsonEncode(data.data)}, $tagName"),
+      content: Text("${data.data?.version}, $tagName"),
       confirm: ElevatedButton(onPressed: () => {
         Get.back()
       }, child: Text('确定')),
