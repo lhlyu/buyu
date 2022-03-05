@@ -18,17 +18,38 @@ final pages = [
 ];
 
 class DashboardView extends StatelessWidget {
+
+  var _pageController = PageController(
+    /// 初始索引值
+    initialPage: 0,
+  );
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return GetBuilder<DashboardController>(
       initState: (state) => {
         Upgrade()
       },
       builder: (controller) {
         return Scaffold(
-          body: pages[controller.tabIndex],
+          body: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              controller.changeTabIndex(index);
+            },
+            children: pages,
+          ),
           bottomNavigationBar: BottomNavigationBar(
-            onTap: controller.changeTabIndex,
+            onTap: (index) {
+              _pageController.jumpToPage(index);
+              controller.changeTabIndex(index);
+            },
             currentIndex: controller.tabIndex,
             items: [
               BottomNavigationBarItem(label: ROUTE_HOME.label, icon: ROUTE_HOME.icon),
@@ -47,14 +68,27 @@ class DashboardView extends StatelessWidget {
 // 下载新版本
 // 安装
 void Upgrade() async {
-  final tagName = await readFile('version.txt');
+  final tagName = await readFile('assets/version.txt');
   final data = await ApiGetNewTagName();
+  if (data.code != 0) {
+    return;
+  }
+  if (data.data['version'].toString() == tagName) {
+    return;
+  }
   Get.defaultDialog(
       title: "提示框",
-      middleText: "${jsonEncode(data)}, $tagName",
+      middleText: "${jsonEncode(data.data)}, $tagName",
       backgroundColor: Colors.white,
       titleStyle: TextStyle(color: Colors.black),
       middleTextStyle: TextStyle(color: Colors.black),
-      radius: 15
+      radius: 15,
+      content: Text("${jsonEncode(data.data)}, $tagName"),
+      confirm: ElevatedButton(onPressed: () => {
+        Get.back()
+      }, child: Text('确定')),
+      cancel: ElevatedButton(onPressed: () => {
+        Get.back()
+      }, child: Text('取消')),
   );
 }

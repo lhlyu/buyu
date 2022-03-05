@@ -29,7 +29,7 @@ class HttpManager {
           String version = '';
           // PackageInfo packageInfo = await PackageInfo.fromPlatform();
           // version = packageInfo.version;
-          String tagName = await readFile('version.txt');
+          String tagName = await readFile('assets/version.txt');
 
 
           options.headers["Content-Type"] = 'application/json;charset=UTF-8';
