@@ -1,11 +1,7 @@
 import 'package:buyu/ui/page/dashboard/dashboard_view.dart';
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
-
-import 'setting_controller.dart';
-
-class SettingView extends GetView<SettingController> {
+class SettingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

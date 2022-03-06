@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 
-import 'inspiration_controller.dart';
-
-class InspirationView extends GetView<InspirationController> {
+class InspirationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

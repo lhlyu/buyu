@@ -3,14 +3,6 @@ import 'package:buyu/ui/page/dashboard/dashboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:buyu/ui/page/home/home_view.dart';
-import 'package:buyu/ui/page/setting/setting_view.dart';
-import 'package:buyu/ui/page/inspiration/inspiration_view.dart';
-
-import 'package:buyu/ui/page/home/home_binding.dart';
-import 'package:buyu/ui/page/setting/setting_binding.dart';
-import 'package:buyu/ui/page/inspiration/inspiration_binding.dart';
-
 
 
 

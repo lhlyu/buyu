@@ -19,6 +19,7 @@ jobs:
         with:
           flutter-version: "2.10.2"
       - run: echo '${{ github.ref_name }}' > assets/version.txt
+      - run: cat assets/version.txt
       - run: flutter pub get
       - run: flutter build apk --release  --target-platform android-arm
       - name: Release apk

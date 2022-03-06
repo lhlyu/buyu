@@ -30,30 +30,26 @@ class DashboardView extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
 
-    return GetBuilder<DashboardController>(
-      builder: (controller) {
-        return Scaffold(
-          body: PageView(
-            controller: _pageController,
-            onPageChanged: (index) {
-              controller.changeTabIndex(index);
-            },
-            children: pages,
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: (index) {
-              _pageController.jumpToPage(index);
-              controller.changeTabIndex(index);
-            },
-            currentIndex: controller.tabIndex,
-            items: [
-              BottomNavigationBarItem(label: ROUTE_HOME.label, icon: ROUTE_HOME.icon),
-              BottomNavigationBarItem(label: ROUTE_INSPIRATION.label, icon: ROUTE_INSPIRATION.icon),
-              BottomNavigationBarItem(label: ROUTE_SETTING.label, icon: ROUTE_SETTING.icon),
-            ],
-          ),
-        );
-      },
+    return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          controller.changeTabIndex(index);
+        },
+        children: pages,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          _pageController.jumpToPage(index);
+          controller.changeTabIndex(index);
+        },
+        currentIndex: controller.tabIndex,
+        items: [
+          BottomNavigationBarItem(label: ROUTE_HOME.label, icon: ROUTE_HOME.icon),
+          BottomNavigationBarItem(label: ROUTE_INSPIRATION.label, icon: ROUTE_INSPIRATION.icon),
+          BottomNavigationBarItem(label: ROUTE_SETTING.label, icon: ROUTE_SETTING.icon),
+        ],
+      ),
     );
   }
 }
@@ -63,16 +59,17 @@ class DashboardView extends GetView<DashboardController> {
 // 下载新版本
 // 安装
 void Upgrade() async {
-  final provider = Get.find<AppProvider>();
-  final tagName = await readFile('assets/version.txt');
-  final data = await provider.ApiGetNewTagName();
-  // if (data.code != 0) {
-  //   return;
-  // }
-  // if (data.data?.version.toString() == tagName) {
-  //   return;
-  // }
-  Get.defaultDialog(
+  try {
+    final provider = Get.find<AppProvider>();
+    final tagName = await readFile('assets/version.txt');
+    final data = await provider.ApiGetNewTagName();
+    // if (data.code != 0) {
+    //   return;
+    // }
+    // if (data.data?.version.toString() == tagName) {
+    //   return;
+    // }
+    Get.defaultDialog(
       title: "提示框",
       backgroundColor: Colors.white,
       titleStyle: TextStyle(color: Colors.black),
@@ -85,5 +82,8 @@ void Upgrade() async {
       cancel: ElevatedButton(onPressed: () => {
         Get.back()
       }, child: Text('取消')),
-  );
+    );
+  } catch (e) {
+    Get.snackbar('错误', '[error] Upgrade $e');
+  }
 }
