@@ -20,12 +20,14 @@ class BaseConnect extends GetConnect {
     });
   }
 
-  Future<BaseResponse<T>> doGet<T>(String url, Function(dynamic json) decoder, { Map<String, String>? headers,Map<String, dynamic>? query}) async {
-    final response = await get(url, headers: headers, query: query, decoder: (json) => {
-       BaseResponse<T>.fromJson(json, (json) => decoder(json))
-    });
-    // TODO 搞不懂这里body为什么是Set<BaseResponse<T>>
-    return response.body?.single as BaseResponse<T>;
+  Future<BaseResponse<T>> doGet<T>(String url, Function(dynamic json)? decoder, { Map<String, String>? headers,Map<String, dynamic>? query}) async {
+
+    final response = await get(url, headers: headers, query: query, decoder: (json) => (
+        BaseResponse<T>.fromJson(json, (json) => decoder == null ? json : decoder(json))
+    ));
+
+
+    return response.body as BaseResponse<T>;
   }
 }
 
