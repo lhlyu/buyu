@@ -21,13 +21,19 @@ class BaseConnect extends GetConnect {
   }
 
   Future<BaseResponse<T>> doGet<T>(String url, Function(dynamic json)? decoder, { Map<String, String>? headers,Map<String, dynamic>? query}) async {
-
-    final response = await get(url, headers: headers, query: query, decoder: (json) => (
-        BaseResponse<T>.fromJson(json, (json) => decoder == null ? json : decoder(json))
-    ));
-
-
-    return response.body as BaseResponse<T>;
+    try {
+      final response = await get(url, headers: headers, query: query, decoder: (json) => (
+          BaseResponse<T>.fromJson(json, (json) => decoder == null ? json : decoder(json))
+      ));
+      return response.body as BaseResponse<T>;
+    } catch(e) {
+      Get.snackbar(
+        '错误',
+        '$e',
+        duration: const Duration(seconds: 8),
+      );
+    }
+    return new BaseResponse();
   }
 }
 
