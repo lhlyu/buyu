@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:buyu/http/upgrade_provider.dart';
+import 'package:buyu/http/app_provider.dart';
 import 'package:buyu/utils/file.dart';
 import 'package:buyu/routes/routes.dart';
 import 'package:buyu/ui/page/home/home_view.dart';
@@ -33,9 +33,6 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
 
     return GetBuilder<DashboardController>(
-      initState: (state) => {
-        Upgrade()
-      },
       builder: (controller) {
         return Scaffold(
           body: PageView(
@@ -68,15 +65,15 @@ class DashboardView extends GetView<DashboardController> {
 // 下载新版本
 // 安装
 void Upgrade() async {
-  final provider = Get.find<UpgradeProvider>();
+  final provider = Get.find<AppProvider>();
   final tagName = await readFile('assets/version.txt');
   final data = await provider.ApiGetNewTagName();
-  if (data.code != 0) {
-    return;
-  }
-  if (data.data?.version.toString() == tagName) {
-    return;
-  }
+  // if (data.code != 0) {
+  //   return;
+  // }
+  // if (data.data?.version.toString() == tagName) {
+  //   return;
+  // }
   Get.defaultDialog(
       title: "提示框",
       backgroundColor: Colors.white,

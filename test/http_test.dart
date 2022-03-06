@@ -1,5 +1,5 @@
 
-import 'package:buyu/http/upgrade_provider.dart';
+import 'package:buyu/http/app_provider.dart';
 
 void main() {
 }

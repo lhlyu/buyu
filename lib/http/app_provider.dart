@@ -23,7 +23,7 @@ class BuyuVersion{
 
 }
 
-class UpgradeProvider extends BaseConnect {
+class AppProvider extends BaseConnect {
 
   Future<BaseResponse<BuyuVersion>> ApiGetNewTagName() async {
     return await doGet('https://func.lhlyu.com/api/buyu_version', BuyuVersion.fromJson);
