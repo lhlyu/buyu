@@ -1,5 +1,7 @@
-import 'package:buyu/ui/page/dashboard/dashboard_binding.dart';
-import 'package:buyu/ui/page/dashboard/dashboard_view.dart';
+import 'package:buyu/ui/pages/login/login_binding.dart';
+import 'package:buyu/ui/pages/login/login_page.dart';
+import 'package:buyu/ui/pages/main/main_binding.dart';
+import 'package:buyu/ui/pages/main/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,22 +9,21 @@ import 'package:get/get.dart';
 
 
 class _RouteModel {
-  int index;
-  String path;
-  String label;
-  Widget icon;
+  final String path;
+  final String label;
+  final IconData icon;
 
-  _RouteModel(this.index, this.path, this.label, this.icon);
+  _RouteModel(this.label, { this.path = '/', this.icon = Icons.home });
 }
 
-final _RouteModel ROUTE_DASHBOARD = _RouteModel(0,'/','', Icon(Icons.dashboard));
-final _RouteModel ROUTE_HOME = _RouteModel(0,'/home','首页', Icon(Icons.home));
-final _RouteModel ROUTE_SETTING = _RouteModel(1,'/setting','设置', Icon(Icons.settings));
-final _RouteModel ROUTE_INSPIRATION = _RouteModel(2,'/inspiration','灵感', Icon(Icons.ac_unit));
+final _RouteModel PAGE_MAIN = _RouteModel('主页', path: '/');
+final _RouteModel VIEW_HOME = _RouteModel('首页',  icon: Icons.home);
+final _RouteModel VIEW_PROFILE = _RouteModel('我的',  icon: Icons.manage_accounts_sharp);
+final _RouteModel VIEW_INSPIRATION = _RouteModel('灵感',  icon: Icons.ac_unit);
+
+final _RouteModel PAGE_LOGIN = _RouteModel('登陆', path: '/login');
 
 final List<GetPage> GetPages = [
-  GetPage(name: ROUTE_DASHBOARD.path, page: () => DashboardView(), binding: DashboardBinding()),
-  // GetPage(name: ROUTE_HOME.path, page: () => HomeView(), binding: HomeBinding()),
-  // GetPage(name: ROUTE_SETTING.path, page: () => SettingView(), binding: SettingBinding()),
-  // GetPage(name: ROUTE_INSPIRATION.path, page: () => InspirationView(), binding: InspirationBinding()),
+  GetPage(name: PAGE_LOGIN.path, page: () => LoginPage(), binding: LoginBinding()),
+  GetPage(name: PAGE_MAIN.path, page: () => MainPage(), binding: MainBinding()),
 ];

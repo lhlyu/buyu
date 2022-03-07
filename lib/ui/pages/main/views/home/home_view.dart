@@ -1,6 +1,7 @@
-import 'package:buyu/ui/page/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'home_controller.dart';
 
 class HomeView extends StatelessWidget {
 

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 
 class BaseConnect extends GetConnect {
@@ -33,7 +31,7 @@ class BaseConnect extends GetConnect {
         duration: const Duration(seconds: 8),
       );
     }
-    return new BaseResponse();
+    return new BaseResponse(code: -1, msg: '请求失败', data: null);
   }
 }
 

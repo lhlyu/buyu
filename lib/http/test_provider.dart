@@ -1,6 +1,4 @@
 import 'package:buyu/http/base_connect.dart';
-import 'package:get/get.dart';
-
 
 class TestProvider extends BaseConnect {
 

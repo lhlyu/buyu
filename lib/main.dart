@@ -12,7 +12,8 @@ void main() {
       primarySwatch: Colors.deepOrange,
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),
-    initialRoute: ROUTE_DASHBOARD.path,
+    defaultTransition: Transition.circularReveal,
+    initialRoute: PAGE_LOGIN.path,
     getPages: GetPages,
   ));
 }
