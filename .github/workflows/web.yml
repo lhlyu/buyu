@@ -2,7 +2,7 @@ name: Build Web
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build:
